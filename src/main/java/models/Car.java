@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Car {
     private String model;
     private String brand;
@@ -33,5 +35,17 @@ public class Car {
 
     public void setMileage(int mileage) {
         this.mileage = mileage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return getMileage() == car.getMileage() && Objects.equals(getModel(), car.getModel()) && Objects.equals(getBrand(), car.getBrand());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getModel(), getBrand(), getMileage());
     }
 }
